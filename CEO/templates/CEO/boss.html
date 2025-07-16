@@ -1,0 +1,22 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+
+  {% if ceo %}
+    <h2>{{ ceo.nome }}</h2>
+    <p>{{ ceo.bio }}</p>
+    {% if ceo.foto %}
+      <img src="{{ ceo.foto.url }}" width="500">
+    {% endif %}
+  {% else %}
+    <p>Nenhum CEO cadastrado ainda.</p>
+  {% endif %}
+
+  <p>
+    
+  {% if user.is_authenticated %}
+    <br>
+    <a href="{% url 'CEO:editar_ceo' %}" class="btn btn-warning">Editar CEO</a>
+  {% endif %}
+
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+
+<ul>
+
+  <li><a href="{% url 'modelos:lista_modelos' %}">Modelos</a></li>
+  <li><a href="{% url 'fotografos:lista_fotografos' %}">Fotógrafos</a></li>
+  <li><a href="{% url 'produtores:lista_produtores' %}">Produtores</a></li>
+  <li><a href="{% url 'maquiadores:lista_maquiadores' %}">Maquiadores</a></li>
+  <li><a href="{% url 'estilistas:lista_estilistas' %}">Estilistas</a></li>
+  <li><a href="{% url 'cabeleireiros:lista_cabeleireiros' %}">Cabeleleiros</a></li>
+  <li><a href="{% url 'CEO:Big_Boss' %}">Conheça um pouco do CEO da agencia Agencia</a></li>
+  
+</ul>
+
+
+{% endblock %}

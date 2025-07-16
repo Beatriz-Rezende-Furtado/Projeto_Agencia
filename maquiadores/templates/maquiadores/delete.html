@@ -1,0 +1,9 @@
+{% extends 'menu.html' %}
+{% block content %}
+<h2>Deseja excluir este funcionário {{ maquiador.nome }}?</h2>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Sim, excluir</button>
+  <a href="{% url 'maquiador:lista_maquiadores' %}">Cancelar</a>
+</form>
+{% endblock %}

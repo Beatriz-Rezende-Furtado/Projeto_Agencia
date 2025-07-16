@@ -1,0 +1,35 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+  <h1>Lista de Fotógrafos</h1>
+  <p>Exemplo de conteúdo.</p>
+
+
+  {% if user.is_authenticated %}
+    <a href="{% url 'fotografos:novo_Fotografo' %}" class="btn btn-primary"> + Adicionar novo fotógrafo</a>
+  {% endif %}
+
+   <p>  
+        {% comment %} o <p> é só para dar uma certa distancia entre o texto e os botões {% endcomment %}
+
+<ul>
+  {% for fotografo in fotografos %}
+    <li style="margin-bottom: 10px;">
+      <strong>{{ fotografo.nome }}</strong> - {{ fotografo.idade }} anos <br> {{ fotografo.bio }} <br>
+      <img src="{{ fotografo.foto.url }}" alt="{{ fotografo.nome }}" width="150">
+
+       <p>  
+        {% comment %} o <p> é só para dar uma certa distancia entre o texto e os botões {% endcomment %}
+
+      {% if user.is_authenticated %}
+        <br>
+        <a href="{% url 'fotografos:editar_Fotografo' fotografo.pk %}" class="btn btn-warning">Editar</a>
+        <a href="{% url 'fotografos:deletar_Fotografo' fotografo.pk %}" class="btn btn-danger">Excluir</a>
+      {% endif %}
+    </li>
+     {% empty %}
+    <p>Nenhum fotógrafo cadastrado.</p>
+  {% endfor %}
+</ul>
+
+{% endblock %}

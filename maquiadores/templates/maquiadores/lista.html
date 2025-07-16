@@ -1,0 +1,35 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+  <h1>Lista de Maquiadores</h1>
+  <p>Exemplo de conteúdo.</p>
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'maquiadores:novo_Maquiador' %}" class="btn btn-primary">+ Adicionar Novo Maquiador </a>
+    {% endif %}
+
+     <p>  
+        {% comment %} o <p> é só para dar uma certa distancia entre o texto e os botões {% endcomment %}
+    
+<ul>
+    {% for maquiador in maquiadores %}
+      <li style="margin-bottom: 10px;">
+        <strong>{{ maquiador.nome }}</strong> - {{ maquiador.idade }} anos <br> {{ maquiador.bio }} <br>
+        <img src="{{ maquiador.foto.url }}" alt="{{ maquiador.nome }}" width="150">
+
+         <p>  
+        {% comment %} o <p> é só para dar uma certa distancia entre o texto e os botões {% endcomment %}
+
+
+        {% if user.is_authenticated %}
+          <br>
+          <a href="{% url 'maquiadores:editar_Maquiador' maquiador.pk %}" class="btn btn-warning">Editar</a>
+          <a href="{% url 'maquiadores:deletar_Maquiador' maquiador.pk %}" class="btn btn-danger">Excluir</a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <p>Nenhum Maquiador cadastrado.</p>
+    {% endfor %}
+</ul>
+
+{% endblock %}

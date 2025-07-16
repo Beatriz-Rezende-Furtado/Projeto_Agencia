@@ -1,0 +1,36 @@
+{% extends 'menu.html' %}
+
+{% block content %}
+  <h1>Lista de Modelos</h1>
+  <p>Exemplo de conteúdo.</p>
+
+    {% if user.is_authenticated %}
+    <a href="{% url 'modelos:novo_Modelo' %}" class="btn btn-primary">+ Adicionar Novo Modelo</a>
+    {% endif %}
+    
+     <p>  
+        {% comment %} o <p> é só para dar uma certa distancia entre o texto e os botões {% endcomment %}
+
+<ul>
+    {% for modelo in modelos %}
+      <li style="margin-bottom: 10px;">
+        <strong>{{ modelo.nome }}</strong> - {{ modelo.idade }} anos <br>
+        {{ modelo.bio }} <br>
+        <img src="{{ modelo.foto.url }}" alt="{{ modelo.nome }}" width="150">
+
+         <p>  
+        {% comment %} o <p> é só para dar uma certa distancia entre o texto e os botões {% endcomment %}
+
+        {% if user.is_authenticated %}
+          <br>
+          <a href="{% url 'modelos:editar_Modelo' modelo.pk %}" class="btn btn-warning">Editar</a>
+          <a href="{% url 'modelos:deletar_Modelo' modelo.pk %}" class="btn btn-danger">Excluir</a>
+        {% endif %}
+      </li>
+    {% empty %}
+      <p>Nenhum Modelo cadastrado.</p>
+    {% endfor %}
+</ul>
+
+{% endblock %}
+

@@ -1,0 +1,9 @@
+{% extends 'menu.html' %}
+{% block content %}
+<h2>Deseja excluir o funcionário {{ produtor.nome }}?</h2>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Sim, excluir</button>
+  <a href="{% url 'produtores:lista_produtores' %}">Cancelar</a>
+</form>
+{% endblock %}

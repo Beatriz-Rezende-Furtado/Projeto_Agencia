@@ -1,0 +1,10 @@
+{% extends 'menu.html' %}
+{% block content %}
+<h2>Deseja excluir este funcionário {{ modelo.nome }}"?</h2>
+<form method="POST">
+  {% csrf_token %}
+  <button type="submit">Sim, excluir</button>
+  <a href="{% url 'modelos:lista_modelos' %}">Cancelar</a>
+</form>
+{% endblock %}
+
